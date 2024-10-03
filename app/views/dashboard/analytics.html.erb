@@ -1,0 +1,36 @@
+<head>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<!-- appointments_per_day.html.erb -->
+<div class="card col-lg-8">
+  <div class="card-body">
+    <h5 class="card-title">Appointments per Day</h5>
+    <canvas id="appointments-per-day-chart" width="400" height="200"></canvas>
+  </div>
+</div>
+
+<script>
+  const ctx = document.getElementById('appointments-per-day-chart').getContext('2d');
+  const arr = <%= raw @labels.to_json %>;
+  const newArr = arr.map(str => str.replace("&quot;", ""));
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: newArr,
+      datasets: [{
+        label: 'Total Appointments',
+        data: <%= @data.to_json %>,
+        backgroundColor: 'rgba(54, 162, 235, 0.2)',
+        borderColor: 'rgba(54, 162, 235, 1)',
+        borderWidth: 1
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+</script>

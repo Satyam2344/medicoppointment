@@ -1,0 +1,13 @@
+<h1>Input Fields</h1>
+
+<ul>
+  <%
+=begin%>
+ <% @input_fields.each do |key, value| %>
+    <li><strong><%= key %>:</strong> <%= value %></li>
+  <% end %> 
+<%
+=end%>
+
+<%= @input_fields.status %>
+</ul>
